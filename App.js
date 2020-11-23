@@ -1,43 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Dashboard Holoprint</title>
-	<script src="firebase.js"></script>
-	<script src="jquery-3.2.1.slim.min.js"></script>
-	<script src="bootstrap.min.js"></script>
-	<link rel="stylesheet" href="bootstrap.min.css">
-	<link rel="stylesheet" href="fonts/font-awesome.min.css" >
-</head>
-
-<body onload="tampilData()">
-<div style="padding:100px;">
-	<br>
-	<div class="row no-gutters">
-	    <div class="col align-self-center"><h3 class="text-left"><i class="fa fa-home" onclick="tampilData()" style="cursor: pointer;"></i> Holoprint Inventory</h3></div>
-	    <div class="col align-self-center" style="padding:12px;"><input id="text_cari" type="text" placeholder="Cari berdasarkan nama" class="form-control" style="padding:6px;" /></div>
-	    <div class="col-auto align-self-center" style="padding:6px;"><button class="btn btn-primary" type="button" onclick="CariData()">Cari Data</button></div>
-	    <div class="col-auto align-self-center" style="padding:6px;"><button class="btn btn-success" type="button" id="tambah_data" style="margin-left:10px;" data-toggle="modal" data-target="#ModalAdd" onclick="ambilDataTerakhir()">Tambah Data</button></div>
-	</div>
-	
-	<table id="tabel-status-Bahan" class="table table-striped table-bordered table-hover">
-	<thead  class="thead-dark">
-		<tr>
-    		<th scope="col">ID</th>
-    		<th scope="col">Nama</th>
-    		<th scope="col">Jenis</th> 
-    		<th scope="col">Stock</th>
-    		<th scope="col">Kode Supplier</th>
-    		<th scope="col">Aksi</th>
-  		</tr>
-  	</thead>
-  	<tbody>
-
-  	</tbody>
-	</table>	
-</div>
-
-<script>
-	// Initialize Firebase
+// Initialize Firebase
 	var firebaseConfig = {
 		apiKey: "AIzaSyC6FHTUjVomTT9SeXAIBvB6FpFCxBbNo2Q",
 		authDomain: "holoprint-myid.firebaseapp.com",
@@ -185,8 +146,8 @@
 
 		update_statusBahan.update ({
 		   "nama_bahan": nama_bahan_update_proses,
-		   "jenis": jenis_update_proses,
-		   "stock": parseInt(stock_update_proses),
+		   "jenis": parseInt(jenis_update_proses),
+		   "stock": stock_update_proses,
 		   "kode_supplier": kode_supplier_update_proses
 		});
 
@@ -232,8 +193,8 @@
 			id : parseInt(id_add_proses),
 			kode_supplier : kode_supplier_add_proses,
 		    nama_bahan : nama_bahan_add_proses,
-		    jenis : jenis_add_proses,
-		    stock : parseInt(stock_add_proses)
+		    jenis : parseInt(jenis_add_proses),
+		    stock : stock_add_proses
 			
   		});
 
@@ -260,89 +221,3 @@
 	{
 		$('#T4_del').val(id);
 	}
-</script>
-
-<!-- Modal Update -->
-<div class="modal fade" id="ModalUpdate" tabindex="-1" role="dialog" aria-labelledby="ModalUpdateLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="ModalUpdateLabel">Update Data</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <h6>ID : </h6>
-		<input class="form-control" type="text" id="T4"></br>
-		<h6>Nama Bahan : </h6>
-		<input class="form-control" type="text" id="t4_nama_bahan"></br>
-		<h6>Jenis : </h6>
-		<input class="form-control" type="text" id="t4_jenis"></br>
-		<h6>Stock : </h6>
-		<input class="form-control" type="text" id="t4_stock"></br>
-		<h6>Kode Supplier : </h6>
-		<input class="form-control" type="text" id="t4_kode_supplier"></br>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-        <button type="button" class="btn btn-primary" onclick="updateData_Proses()">Simpan</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- Modal Add -->
-<div class="modal fade" id="ModalAdd" tabindex="-1" role="dialog" aria-labelledby="ModalAddLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="ModalUpdateLabel">Tambah Data Data</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <h6>ID : </h6>
-		<input class="form-control" type="text" id="T4_add"></br>
-		<h6>Nama Bahan : </h6>
-		<input class="form-control" type="text" id="t4_nama_bahan_add"></br>
-		<h6>Jenis : </h6>
-		<input class="form-control" type="text" id="t4_jenis_add"></br>
-		<h6>Stock : </h6>
-		<input class="form-control" type="text" id="t4_stock_add"></br>
-		<h6>Kode Supplier : </h6>
-		<input class="form-control" type="text" id="t4_kode_supplier_add"></br>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-        <button type="button" class="btn btn-primary" onclick="addData_Proses()">Simpan</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- Modal Hapus Data -->
-<div class="modal fade" id="ModalDel" tabindex="-1" role="dialog" aria-labelledby="ModalDelLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="ModalUpdateLabel">Konfirmasi Hapus Data</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <h6>ID : </h6>
-		<input class="form-control" type="text" id="T4_del">
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-        <button type="button" class="btn btn-danger" onclick="delData_Proses()">Hapus Data</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-</body>
-</html>
