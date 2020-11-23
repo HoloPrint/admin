@@ -130,6 +130,8 @@ function updateData_Tampil(id) {
 
 	var dbRef_update_tampil = firebase.database();
 	var statusPesanandenganID = dbRef_update_tampil.ref("status-Pesanan/" + id);
+	var base = 15000;
+	var flatongkir = 25000;
 
 	statusPesanandenganID.on("value", function (snapshot) {
 		var childData = snapshot.val();
@@ -139,6 +141,7 @@ function updateData_Tampil(id) {
 		$('#t4_file').val(childData.file);
 		$('#t4_varian').val(childData.varian);
 		$('#t4_jumlah').val(childData.jumlah);
+		$('#t4_nominal').val((base*childData.jumlah)+flatongkir);
 	});
 
 }
