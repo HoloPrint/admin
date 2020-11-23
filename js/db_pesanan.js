@@ -141,7 +141,7 @@ function updateData_Tampil(id) {
 		$('#t4_file').val(childData.file);
 		$('#t4_varian').val(childData.varian);
 		$('#t4_jumlah').val(childData.jumlah);
-		$('#t4_nominal').val((base*childData.jumlah)+flatongkir);
+		$('#t4_nominal').val((base * childData.jumlah) + flatongkir);
 	});
 
 }
@@ -199,8 +199,8 @@ function ambilDataTerakhir() {
 function addData_Proses() {
 
 	var base = 15000;
-	var flatongkir= 25000;
-	
+	var flatongkir = 25000;
+
 	var id_add_proses = $('#T4_add').val();
 	var nama_pemesan_add_proses = $('#t4_nama_pemesan_add').val();
 	var alamat_add_proses = $('#t4_alamat_add').val();
@@ -208,7 +208,7 @@ function addData_Proses() {
 	var file_add_proses = $('#t4_file_add').val();
 	var varian_add_proses = $('#t4_varian_add').val();
 	var jumlah_add_proses = $('#t4_jumlah_add').val();
-	var nominal_add_proses = ((base*jumlah_add_proses)+flatongkir);
+	var nominal_add_proses = ((base * jumlah_add_proses) + flatongkir);
 
 	var dbRef_add_proses = firebase.database();
 
@@ -219,12 +219,12 @@ function addData_Proses() {
 
 		"id": parseInt(id_add_proses),
 		"nama_pemesan": nama_pemesan_add_proses,
-		"alamat" : alamat_add_proses,
-		"kontak" : kontak_add_proses,
-		"file" : file_add_proses,
-		"varian" : varian_add_proses,
-		"jumlah" : parseInt(jumlah_add_proses),
-		"nominal" : parseInt(nominal_add_proses)
+		"alamat": alamat_add_proses,
+		"kontak": kontak_add_proses,
+		"file": file_add_proses,
+		"varian": varian_add_proses,
+		"jumlah": parseInt(jumlah_add_proses),
+		"nominal": parseInt(nominal_add_proses)
 
 	});
 

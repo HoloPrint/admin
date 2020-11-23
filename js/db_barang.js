@@ -202,9 +202,9 @@ function bayar() {
 	var txt;
 	var nom = 10000;
 	if (confirm("Nominal Pemabayran anda " + nom)) {
-	  txt = "You pressed OK!";
+		txt = "You pressed OK!";
 	} else {
-	  txt = "You pressed Cancel!";
+		txt = "You pressed Cancel!";
 	}
 	document.getElementById("demo").innerHTML = txt;
 }
