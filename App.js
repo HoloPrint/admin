@@ -146,8 +146,8 @@
 
 		update_statusBahan.update ({
 		   "nama_bahan": nama_bahan_update_proses,
-		   "jenis": parseInt(jenis_update_proses),
-		   "stock": stock_update_proses,
+		   "jenis": jenis_update_proses,
+		   "stock": parseInt(stock_update_proses),
 		   "kode_supplier": kode_supplier_update_proses
 		});
 
@@ -193,8 +193,8 @@
 			id : parseInt(id_add_proses),
 			kode_supplier : kode_supplier_add_proses,
 		    nama_bahan : nama_bahan_add_proses,
-		    jenis : parseInt(jenis_add_proses),
-		    stock : stock_add_proses
+		    jenis : jenis_add_proses,
+		    stock : parseInt(stock_add_proses)
 			
   		});
 
