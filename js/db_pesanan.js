@@ -198,17 +198,17 @@ function ambilDataTerakhir() {
 // Melakukan proses penambahan Pesanan data
 function addData_Proses() {
 
-	base = 15000;
-	flatongkir= 25000;
+	var base = 15000;
+	var flatongkir= 25000;
 	
-	var id_add_proses = $('#T4').val();
+	var id_add_proses = $('#T4_add').val();
 	var nama_pemesan_add_proses = $('#t4_nama_pemesan_add').val();
 	var alamat_add_proses = $('#t4_alamat_add').val();
 	var kontak_add_proses = $('#t4_kontak_add').val();
 	var file_add_proses = $('#t4_file_add').val();
 	var varian_add_proses = $('#t4_varian_add').val();
 	var jumlah_add_proses = $('#t4_jumlah_add').val();
-	var nominal_add_proses =$((base*$('#t4_jumlah_add').val())+flatongkir);
+	var nominal_add_proses = ((base*jumlah_add_proses)+flatongkir);
 
 	var dbRef_add_proses = firebase.database();
 
@@ -217,18 +217,20 @@ function addData_Proses() {
 
 	statusPesanan.set({
 
-		id: parseInt(id_add_proses),
-		nama_pemesan: nama_pemesan_add_proses,
-		alamat : alamat_add_proses,
-		kontak : kontak_add_proses,
-		file : file_add_proses,
-		varian : varian_add_proses,
-		jumlah : parseInt(jumlah_add_proses),
-		nominal : parseInt(nominal_add_proses)
+		"id": parseInt(id_add_proses),
+		"nama_pemesan": nama_pemesan_add_proses,
+		"alamat" : alamat_add_proses,
+		"kontak" : kontak_add_proses,
+		"file" : file_add_proses,
+		"varian" : varian_add_proses,
+		"jumlah" : parseInt(jumlah_add_proses),
+		"nominal" : parseInt(nominal_add_proses)
 
 	});
 
+	$('#ModalBayar').modal('show');
 	$('#ModalAdd').modal('hide');
+	$('#t4_byr').val(nominal_add_proses);
 	tampilData();
 }
 

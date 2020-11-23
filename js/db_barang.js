@@ -196,6 +196,19 @@ function addData_Proses() {
 	tampilData();
 }
 
+// Popup Bayar
+
+function bayar() {
+	var txt;
+	var nom = 10000;
+	if (confirm("Nominal Pemabayran anda " + nom)) {
+	  txt = "You pressed OK!";
+	} else {
+	  txt = "You pressed Cancel!";
+	}
+	document.getElementById("demo").innerHTML = txt;
+}
+
 // Melakukan proses delete data yang telah dikonfirmasi sebelumnya
 function delData_Proses() {
 	var id_add_proses = $('#T4_del').val();
