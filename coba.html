@@ -1,0 +1,16 @@
+<html>
+    <body>
+        <script src="/assets/database/connection.js"></script>
+        <script>
+            // Get a reference to the database service
+            var database = firebase.database();
+            
+            var leadsRef = database.ref('daftar_pesanan');
+            leadsRef.on('value', function(snapshot) {
+                snapshot.forEach(function(childSnapshot) {
+                    var childData = childSnapshot.val();
+                });
+            });
+        </script>
+    </body>
+</html>

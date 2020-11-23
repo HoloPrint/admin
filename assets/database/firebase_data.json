@@ -1,0 +1,27 @@
+{
+  "daftar_pesanan" : 
+  [ 
+    {
+      "p_id" : 0,
+      "P_nama" : "Sandi Pratama",
+      "P_alamat" : "Bandung",
+      "p_email" : "sandi@holoprint.com",
+      "p_contact" : "0895357551137",
+      "p_file" : "apalah.jpg",
+      "p_varian" : 1,
+      "p_jumlah" : 1,
+      "p_nominal" : 20000
+    }, 
+    {
+      "p_id" : 1,
+      "P_nama" : "Viera Veranda Vie",
+      "P_alamat" : "Bandung ",
+      "p_email" : "vie@marina.studio",
+      "p_contact" : "1234567890",
+      "p_file" : "test.jpg",
+      "p_varian" : 2,
+      "p_jumlah" : 2,
+      "p_nominal" : 40000
+    }
+  ]
+}
