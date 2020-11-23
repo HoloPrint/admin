@@ -149,19 +149,25 @@ function updateData_Tampil(id) {
 // Melakukan proses update data
 function updateData_Proses() {
 	var id_update_proses = $('#T4').val();
-	var nama_Pesanan_update_proses = $('#t4_nama_Pesanan').val();
-	var jenis_update_proses = $('#t4_jenis').val();
-	var stock_update_proses = $('#t4_stock').val();
-	var kode_supplier_update_proses = $('#t4_kode_supplier').val();
+	var nama_pemesan_update_proses = $('#t4_nama_pemesan').val();
+	var alamat_update_proses = $('#t4_alamat').val();
+	var kontak_update_proses = $('#t4_kontak').val();
+	var file_update_proses = $('#t4_file').val();
+	var varian_update_proses = $('#t4_varian').val();
+	var jumlah_update_proses = $('#t4_jumlah').val();
+	var nominal_update_proses = $('#t4_nominal').val();
 
 	var dbRef_update_proses = firebase.database();
 	var update_statusPesanan = dbRef_update_proses.ref("status-Pesanan/" + id_update_proses);
 
 	update_statusPesanan.update({
-		"nama_Pesanan": nama_Pesanan_update_proses,
-		"jenis": jenis_update_proses,
-		"stock": parseInt(stock_update_proses),
-		"kode_supplier": kode_supplier_update_proses
+		"nama_pemesan": nama_pemesan_update_proses,
+		"alamat": alamat_update_proses,
+		"kontak": kontak_update_proses,
+		"file": file_update_proses,
+		"varian": varian_update_proses,
+		"jumlah": parseInt(jumlah_update_proses),
+		"nominal": parseInt(nominal_update_proses)
 	});
 
 	$('#ModalUpdate').modal('hide');
@@ -171,10 +177,13 @@ function updateData_Proses() {
 // Mengambil id terakhir dan membahkan dengan 1 dan memasukkan kedalam text id di modal tambah
 function ambilDataTerakhir() {
 
-	$('#t4_nama_Pesanan_add').val("");
-	$('#t4_jenis_add').val("");
-	$('#t4_stock_add').val("");
-	$('#t4_kode_supplier_add').val("");
+	$('#t4_nama_pemesan_add').val("");
+	$('#t4_alamat_add').val("");
+	$('#t4_kontak_add').val("");
+	$('#t4_file_add').val("");
+	$('#t4_varian_add').val("");
+	$('#t4_jumlah_add').val("");
+	$('#t4_nominal_add').val("");
 
 	var dbRef_ambilDataTerakhir = firebase.database();
 	var cariAkhir = dbRef_ambilDataTerakhir.ref("status-Pesanan");
@@ -186,13 +195,20 @@ function ambilDataTerakhir() {
 
 }
 
-// Melakukan proses penamPesanan data
+// Melakukan proses penambahan Pesanan data
 function addData_Proses() {
-	var id_add_proses = $('#T4_add').val();
-	var nama_Pesanan_add_proses = $('#t4_nama_Pesanan_add').val();
-	var jenis_add_proses = $('#t4_jenis_add').val();
-	var stock_add_proses = $('#t4_stock_add').val();
-	var kode_supplier_add_proses = $('#t4_kode_supplier_add').val();
+
+	base = 15000;
+	flatongkir= 25000;
+	
+	var id_add_proses = $('#T4').val();
+	var nama_pemesan_add_proses = $('#t4_nama_pemesan_add').val();
+	var alamat_add_proses = $('#t4_alamat_add').val();
+	var kontak_add_proses = $('#t4_kontak_add').val();
+	var file_add_proses = $('#t4_file_add').val();
+	var varian_add_proses = $('#t4_varian_add').val();
+	var jumlah_add_proses = $('#t4_jumlah_add').val();
+	var nominal_add_proses =$((base*$('#t4_jumlah_add').val())+flatongkir);
 
 	var dbRef_add_proses = firebase.database();
 
@@ -202,10 +218,13 @@ function addData_Proses() {
 	statusPesanan.set({
 
 		id: parseInt(id_add_proses),
-		kode_supplier: kode_supplier_add_proses,
-		nama_Pesanan: nama_Pesanan_add_proses,
-		jenis: jenis_add_proses,
-		stock: parseInt(stock_add_proses)
+		nama_pemesan: nama_pemesan_add_proses,
+		alamat : alamat_add_proses,
+		kontak : kontak_add_proses,
+		file : file_add_proses,
+		varian : varian_add_proses,
+		jumlah : parseInt(jumlah_add_proses),
+		nominal : parseInt(nominal_add_proses)
 
 	});
 
