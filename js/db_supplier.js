@@ -17,17 +17,17 @@ function tampilData() {
 
 	// Buat referensi database firebase
 	var dbRef = firebase.database();
-	var statussupplier = dbRef.ref("status-supplier");
+	var statusSupplier = dbRef.ref("status-Supplier");
 
 	// Dapatkan referensi table
-	var table = document.getElementById("tabel-status-supplier").getElementsByTagName('tbody')[0];
+	var table = document.getElementById("tabel-status-Supplier").getElementsByTagName('tbody')[0];
 
 	// Membuang semua isi table	
-	$("#tabel-status-supplier").find("tr:gt(0)").remove();
+	$("#tabel-status-Supplier").find("tr:gt(0)").remove();
 
 	// Memuat Data
-	statussupplier.on("child_added", function (data, prevChildKey) {
-		var newstatussupplier = data.val();
+	statusSupplier.on("child_added", function (data, prevChildKey) {
+		var newstatusSupplier = data.val();
 
 		var row = table.insertRow(table.rows.length);
 
@@ -37,11 +37,11 @@ function tampilData() {
 		var cell4 = row.insertCell(3);
 		var cell5 = row.insertCell(4);
 
-		cell1.innerHTML = newstatussupplier.id;
-		cell2.innerHTML = newstatussupplier.nama_supplier;
-		cell3.innerHTML = newstatussupplier.alamat;
-		cell4.innerHTML = newstatussupplier.kontak;
-		cell5.innerHTML = '<button class="btn btn-success btn-sm">Hubungi</button> <button class="btn btn-primary btn-sm" type="button" id="update_data" onclick="updateData_Tampil(' + newstatussupplier.id + ')" data-toggle="modal" data-target="#ModalUpdate">Update</button><button class="btn btn-danger btn-sm" type="button" id="delete_data" onclick="deleteData_Tampil(' + newstatussupplier.id + ')" data-toggle="modal" data-target="#ModalDel" style="margin-left:10px;">Hapus</button>';
+		cell1.innerHTML = newstatusSupplier.id;
+		cell2.innerHTML = newstatusSupplier.nama_Supplier;
+		cell3.innerHTML = newstatusSupplier.alamat;
+		cell4.innerHTML = newstatusSupplier.kontak;
+		cell5.innerHTML = '<button class="btn btn-success btn-sm">Hubungi</button> <button class="btn btn-primary btn-sm" type="button" id="update_data" onclick="updateData_Tampil(' + newstatusSupplier.id + ')" data-toggle="modal" data-target="#ModalUpdate">Update</button><button class="btn btn-danger btn-sm" type="button" id="delete_data" onclick="deleteData_Tampil(' + newstatusSupplier.id + ')" data-toggle="modal" data-target="#ModalDel" style="margin-left:10px;">Hapus</button>';
 	});
 
 }
@@ -49,40 +49,40 @@ function tampilData() {
 // Melakukan proses pencarian data
 function CariData() {
 	// Ambil isi text pencarian
-	var nama_supplier_cari = $('#text_cari').val();
+	var nama_Supplier_cari = $('#text_cari').val();
 
 	// Buat referensi database firebase
 	var dbRef = firebase.database();
-	var statussupplier = dbRef.ref("status-supplier");
+	var statusSupplier = dbRef.ref("status-Supplier");
 
 
-	// // Ambil data nama_supplier sama persis isi text cari
-	// var query = statussupplier
-	// 				.orderByChild('nama_supplier')
-	// 				.equalTo(nama_supplier_cari)
+	// // Ambil data nama_Supplier sama persis isi text cari
+	// var query = statusSupplier
+	// 				.orderByChild('nama_Supplier')
+	// 				.equalTo(nama_Supplier_cari)
 	// 				.limitToFirst(1);
 
 
-	// // Ambil data nama_supplier huruf depan (dan selebihnya) isi text cari dilimit 1 data saja
-	// var query = statussupplier
-	// 				.orderByChild('nama_supplier')
-	// 				.startAt(nama_supplier_cari)
-	// 				.endAt(nama_supplier_cari + "\uf8ff")
+	// // Ambil data nama_Supplier huruf depan (dan selebihnya) isi text cari dilimit 1 data saja
+	// var query = statusSupplier
+	// 				.orderByChild('nama_Supplier')
+	// 				.startAt(nama_Supplier_cari)
+	// 				.endAt(nama_Supplier_cari + "\uf8ff")
 	// 				.limitToFirst(1);
 
 
-	// Ambil data nama_supplier huruf depan (dan selebihnya) isi text cari
-	var query = statussupplier
-		.orderByChild('nama_supplier')
-		.startAt(nama_supplier_cari)
-		.endAt(nama_supplier_cari + "\uf8ff");
+	// Ambil data nama_Supplier huruf depan (dan selebihnya) isi text cari
+	var query = statusSupplier
+		.orderByChild('nama_Supplier')
+		.startAt(nama_Supplier_cari)
+		.endAt(nama_Supplier_cari + "\uf8ff");
 
 
 	// Dapatkan referensi table
-	var table = document.getElementById("tabel-status-supplier").getElementsByTagName('tbody')[0];
+	var table = document.getElementById("tabel-status-Supplier").getElementsByTagName('tbody')[0];
 
 	// Membuang semua isi table	
-	$("#tabel-status-supplier").find("tr:gt(0)").remove();
+	$("#tabel-status-Supplier").find("tr:gt(0)").remove();
 
 	// Memuat Data pencarian
 
@@ -100,7 +100,7 @@ function CariData() {
 		var cell5 = row.insertCell(4);
 
 		cell1.innerHTML = childData.id;
-		cell2.innerHTML = childData.nama_supplier;
+		cell2.innerHTML = childData.nama_Supplier;
 		cell3.innerHTML = childData.alamat;
 		cell4.innerHTML = childData.kontak;
 		cell5.innerHTML = '<button class="btn btn-primary btn-sm" type="button" id="update_data" onclick="updateData_Tampil(' + childData.id + ')" data-toggle="modal" data-target="#ModalUpdate">Update</button><button class="btn btn-danger btn-sm" type="button" id="delete_data" onclick="deleteData_Tampil(' + childData.id + ')" style="margin-left:10px;"data-toggle="modal" data-target="#ModalDel">Hapus</button>';
@@ -113,11 +113,11 @@ function updateData_Tampil(id) {
 	$('#T4').val(id);
 
 	var dbRef_update_tampil = firebase.database();
-	var statussupplierdenganID = dbRef_update_tampil.ref("status-supplier/" + id);
+	var statusSupplierdenganID = dbRef_update_tampil.ref("status-Supplier/" + id);
 
-	statussupplierdenganID.on("value", function (snapshot) {
+	statusSupplierdenganID.on("value", function (snapshot) {
 		var childData = snapshot.val();
-		$('#t4_nama_supplier').val(childData.nama_supplier);
+		$('#t4_nama_Supplier').val(childData.nama_Supplier);
 		$('#t4_alamat').val(childData.alamat);
 		$('#t4_kontak').val(childData.kontak);
 	});
@@ -127,19 +127,19 @@ function updateData_Tampil(id) {
 // Melakukan proses update data
 function updateData_Proses() {
 	var id_update_proses = $('#T4').val();
-	var nama_supplier_update_proses = $('#t4_nama_supplier').val();
+	var nama_Supplier_update_proses = $('#t4_nama_Supplier').val();
 	var alamat_update_proses = $('#t4_alamat').val();
 	var kontak_update_proses = $('#t4_kontak').val();
-	var kode_supplier_update_proses = $('#t4_kode_supplier').val();
+	var kode_Supplier_update_proses = $('#t4_kode_Supplier').val();
 
 	var dbRef_update_proses = firebase.database();
-	var update_statussupplier = dbRef_update_proses.ref("status-supplier/" + id_update_proses);
+	var update_statusSupplier = dbRef_update_proses.ref("status-Supplier/" + id_update_proses);
 
-	update_statussupplier.update({
-		"nama_supplier": nama_supplier_update_proses,
+	update_statusSupplier.update({
+		"nama_Supplier": nama_Supplier_update_proses,
 		"alamat": alamat_update_proses,
 		"kontak": parseInt(kontak_update_proses),
-		"kode_supplier": kode_supplier_update_proses
+		"kode_Supplier": kode_Supplier_update_proses
 	});
 
 	$('#ModalUpdate').modal('hide');
@@ -149,12 +149,12 @@ function updateData_Proses() {
 // Mengambil id terakhir dan membahkan dengan 1 dan memasukkan kedalam text id di modal tambah
 function ambilDataTerakhir() {
 
-	$('#t4_nama_supplier_add').val("");
+	$('#t4_nama_Supplier_add').val("");
 	$('#t4_alamat_add').val("");
 	$('#t4_kontak_add').val("");
 
 	var dbRef_ambilDataTerakhir = firebase.database();
-	var cariAkhir = dbRef_ambilDataTerakhir.ref("status-supplier");
+	var cariAkhir = dbRef_ambilDataTerakhir.ref("status-Supplier");
 	cariAkhir.limitToLast(1).on('child_added', function (dataAkhir) {
 		var snap = dataAkhir.val();
 		var id_record_terakhir = snap.id + 1;
@@ -163,22 +163,22 @@ function ambilDataTerakhir() {
 
 }
 
-// Melakukan proses penamsupplier data
+// Melakukan proses penamSupplier data
 function addData_Proses() {
 	var id_add_proses = $('#T4_add').val();
-	var nama_supplier_add_proses = $('#t4_nama_supplier_add').val();
+	var nama_Supplier_add_proses = $('#t4_nama_Supplier_add').val();
 	var alamat_add_proses = $('#t4_alamat_add').val();
 	var kontak_add_proses = $('#t4_kontak_add').val();
 
 	var dbRef_add_proses = firebase.database();
 
 	// Isikan data kedalam firebase
-	var statussupplier = dbRef_add_proses.ref("status-supplier/" + id_add_proses);
+	var statusSupplier = dbRef_add_proses.ref("status-Supplier/" + id_add_proses);
 
-	statussupplier.set({
+	statusSupplier.set({
 
 		id: parseInt(id_add_proses),
-		nama_supplier: nama_supplier_add_proses,
+		nama_Supplier: nama_Supplier_add_proses,
 		alamat: alamat_add_proses,
 		kontak: kontak_add_proses
 
@@ -193,8 +193,8 @@ function delData_Proses() {
 	var id_add_proses = $('#T4_del').val();
 
 	var dbRef_delete = firebase.database();
-	var statussupplier = dbRef_delete.ref("status-supplier/" + id_add_proses);
-	statussupplier.remove();
+	var statusSupplier = dbRef_delete.ref("status-Supplier/" + id_add_proses);
+	statusSupplier.remove();
 	$('#ModalDel').modal('hide');
 	tampilData();
 
