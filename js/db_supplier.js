@@ -17,17 +17,17 @@ function tampilData() {
 
 	// Buat referensi database firebase
 	var dbRef = firebase.database();
-	var statusPesanan = dbRef.ref("status-Pesanan");
+	var statusSupplier = dbRef.ref("status-Supplier");
 
 	// Dapatkan referensi table
-	var table = document.getElementById("tabel-status-Pesanan").getElementsByTagName('tbody')[0];
+	var table = document.getElementById("tabel-status-Supplier").getElementsByTagName('tbody')[0];
 
 	// Membuang semua isi table	
-	$("#tabel-status-Pesanan").find("tr:gt(0)").remove();
+	$("#tabel-status-Supplier").find("tr:gt(0)").remove();
 
 	// Memuat Data
-	statusPesanan.on("child_added", function (data, prevChildKey) {
-		var newstatusPesanan = data.val();
+	statusSupplier.on("child_added", function (data, prevChildKey) {
+		var newstatusSupplier = data.val();
 
 		var row = table.insertRow(table.rows.length);
 
@@ -41,15 +41,15 @@ function tampilData() {
 		var cell8 = row.insertCell(7);
 		var cell9 = row.insertCell(8);
 
-		cell1.innerHTML = newstatusPesanan.id;
-		cell2.innerHTML = newstatusPesanan.nama_pemesan;
-		cell3.innerHTML = newstatusPesanan.alamat;
-		cell4.innerHTML = newstatusPesanan.kontak;
-		cell5.innerHTML = newstatusPesanan.file;
-		cell6.innerHTML = newstatusPesanan.varian;
-		cell7.innerHTML = newstatusPesanan.jumlah;
-		cell8.innerHTML = newstatusPesanan.nominal;
-		cell9.innerHTML = '<button class="btn btn-primary btn-sm" type="button" id="update_data" onclick="updateData_Tampil(' + newstatusPesanan.id + ')" data-toggle="modal" data-target="#ModalUpdate">Update</button><button class="btn btn-danger btn-sm" type="button" id="delete_data" onclick="deleteData_Tampil(' + newstatusPesanan.id + ')" data-toggle="modal" data-target="#ModalDel" style="margin-left:10px;">Hapus</button>';
+		cell1.innerHTML = newstatusSupplier.id;
+		cell2.innerHTML = newstatusSupplier.nama_pemesan;
+		cell3.innerHTML = newstatusSupplier.alamat;
+		cell4.innerHTML = newstatusSupplier.kontak;
+		cell5.innerHTML = newstatusSupplier.file;
+		cell6.innerHTML = newstatusSupplier.varian;
+		cell7.innerHTML = newstatusSupplier.jumlah;
+		cell8.innerHTML = newstatusSupplier.nominal;
+		cell9.innerHTML = '<button class="btn btn-primary btn-sm" type="button" id="update_data" onclick="updateData_Tampil(' + newstatusSupplier.id + ')" data-toggle="modal" data-target="#ModalUpdate">Update</button><button class="btn btn-danger btn-sm" type="button" id="delete_data" onclick="deleteData_Tampil(' + newstatusSupplier.id + ')" data-toggle="modal" data-target="#ModalDel" style="margin-left:10px;">Hapus</button>';
 	});
 
 }
@@ -61,36 +61,36 @@ function CariData() {
 
 	// Buat referensi database firebase
 	var dbRef = firebase.database();
-	var statusPesanan = dbRef.ref("status-Pesanan");
+	var statusSupplier = dbRef.ref("status-Supplier");
 
 
-	// // Ambil data nama_Pesanan sama persis isi text cari
-	// var query = statusPesanan
-	// 				.orderByChild('nama_Pesanan')
-	// 				.equalTo(nama_Pesanan_cari)
+	// // Ambil data nama_Supplier sama persis isi text cari
+	// var query = statusSupplier
+	// 				.orderByChild('nama_Supplier')
+	// 				.equalTo(nama_Supplier_cari)
 	// 				.limitToFirst(1);
 
 
-	// // Ambil data nama_Pesanan huruf depan (dan selebihnya) isi text cari dilimit 1 data saja
-	// var query = statusPesanan
-	// 				.orderByChild('nama_Pesanan')
-	// 				.startAt(nama_Pesanan_cari)
-	// 				.endAt(nama_Pesanan_cari + "\uf8ff")
+	// // Ambil data nama_Supplier huruf depan (dan selebihnya) isi text cari dilimit 1 data saja
+	// var query = statusSupplier
+	// 				.orderByChild('nama_Supplier')
+	// 				.startAt(nama_Supplier_cari)
+	// 				.endAt(nama_Supplier_cari + "\uf8ff")
 	// 				.limitToFirst(1);
 
 
-	// Ambil data nama_Pesanan huruf depan (dan selebihnya) isi text cari
-	var query = statusPesanan
+	// Ambil data nama_Supplier huruf depan (dan selebihnya) isi text cari
+	var query = statusSupplier
 		.orderByChild('nama_pemesan')
 		.startAt(nama_pemesan_cari)
 		.endAt(nama_pemesan_cari + "\uf8ff");
 
 
 	// Dapatkan referensi table
-	var table = document.getElementById("tabel-status-Pesanan").getElementsByTagName('tbody')[0];
+	var table = document.getElementById("tabel-status-Supplier").getElementsByTagName('tbody')[0];
 
 	// Membuang semua isi table	
-	$("#tabel-status-Pesanan").find("tr:gt(0)").remove();
+	$("#tabel-status-Supplier").find("tr:gt(0)").remove();
 
 	// Memuat Data pencarian
 
@@ -111,15 +111,15 @@ function CariData() {
 		var cell8 = row.insertCell(7);
 		var cell9 = row.insertCell(8);
 
-		cell1.innerHTML = newstatusPesanan.id;
-		cell2.innerHTML = newstatusPesanan.nama_pemesan;
-		cell3.innerHTML = newstatusPesanan.alamat;
-		cell4.innerHTML = newstatusPesanan.kontak;
-		cell5.innerHTML = newstatusPesanan.file;
-		cell6.innerHTML = newstatusPesanan.varian;
-		cell7.innerHTML = newstatusPesanan.jumlah;
-		cell8.innerHTML = newstatusPesanan.nominal;
-		cell9.innerHTML = '<button class="btn btn-primary btn-sm" type="button" id="update_data" onclick="updateData_Tampil(' + newstatusPesanan.id + ')" data-toggle="modal" data-target="#ModalUpdate">Update</button><button class="btn btn-danger btn-sm" type="button" id="delete_data" onclick="deleteData_Tampil(' + newstatusPesanan.id + ')" data-toggle="modal" data-target="#ModalDel" style="margin-left:10px;">Hapus</button>';
+		cell1.innerHTML = newstatusSupplier.id;
+		cell2.innerHTML = newstatusSupplier.nama_pemesan;
+		cell3.innerHTML = newstatusSupplier.alamat;
+		cell4.innerHTML = newstatusSupplier.kontak;
+		cell5.innerHTML = newstatusSupplier.file;
+		cell6.innerHTML = newstatusSupplier.varian;
+		cell7.innerHTML = newstatusSupplier.jumlah;
+		cell8.innerHTML = newstatusSupplier.nominal;
+		cell9.innerHTML = '<button class="btn btn-primary btn-sm" type="button" id="update_data" onclick="updateData_Tampil(' + newstatusSupplier.id + ')" data-toggle="modal" data-target="#ModalUpdate">Update</button><button class="btn btn-danger btn-sm" type="button" id="delete_data" onclick="deleteData_Tampil(' + newstatusSupplier.id + ')" data-toggle="modal" data-target="#ModalDel" style="margin-left:10px;">Hapus</button>';
 	});
 
 }
@@ -129,11 +129,11 @@ function updateData_Tampil(id) {
 	$('#T4').val(id);
 
 	var dbRef_update_tampil = firebase.database();
-	var statusPesanandenganID = dbRef_update_tampil.ref("status-Pesanan/" + id);
+	var statusSupplierdenganID = dbRef_update_tampil.ref("status-Supplier/" + id);
 	var base = 15000;
 	var flatongkir = 25000;
 
-	statusPesanandenganID.on("value", function (snapshot) {
+	statusSupplierdenganID.on("value", function (snapshot) {
 		var childData = snapshot.val();
 		$('#t4_nama_pemesan').val(childData.nama_pemesan);
 		$('#t4_alamat').val(childData.alamat);
@@ -158,9 +158,9 @@ function updateData_Proses() {
 	var nominal_update_proses = $('#t4_nominal').val();
 
 	var dbRef_update_proses = firebase.database();
-	var update_statusPesanan = dbRef_update_proses.ref("status-Pesanan/" + id_update_proses);
+	var update_statusSupplier = dbRef_update_proses.ref("status-Supplier/" + id_update_proses);
 
-	update_statusPesanan.update({
+	update_statusSupplier.update({
 		"nama_pemesan": nama_pemesan_update_proses,
 		"alamat": alamat_update_proses,
 		"kontak": kontak_update_proses,
@@ -186,7 +186,7 @@ function ambilDataTerakhir() {
 	$('#t4_nominal_add').val("");
 
 	var dbRef_ambilDataTerakhir = firebase.database();
-	var cariAkhir = dbRef_ambilDataTerakhir.ref("status-Pesanan");
+	var cariAkhir = dbRef_ambilDataTerakhir.ref("status-Supplier");
 	cariAkhir.limitToLast(1).on('child_added', function (dataAkhir) {
 		var snap = dataAkhir.val();
 		var id_record_terakhir = snap.id + 1;
@@ -195,7 +195,7 @@ function ambilDataTerakhir() {
 
 }
 
-// Melakukan proses penambahan Pesanan data
+// Melakukan proses penambahan Supplier data
 function addData_Proses() {
 
 	var base = 15000;
@@ -213,9 +213,9 @@ function addData_Proses() {
 	var dbRef_add_proses = firebase.database();
 
 	// Isikan data kedalam firebase
-	var statusPesanan = dbRef_add_proses.ref("status-Pesanan/" + id_add_proses);
+	var statusSupplier = dbRef_add_proses.ref("status-Supplier/" + id_add_proses);
 
-	statusPesanan.set({
+	statusSupplier.set({
 
 		"id": parseInt(id_add_proses),
 		"nama_pemesan": nama_pemesan_add_proses,
@@ -239,8 +239,8 @@ function delData_Proses() {
 	var id_add_proses = $('#T4_del').val();
 
 	var dbRef_delete = firebase.database();
-	var statusPesanan = dbRef_delete.ref("status-Pesanan/" + id_add_proses);
-	statusPesanan.remove();
+	var statusSupplier = dbRef_delete.ref("status-Supplier/" + id_add_proses);
+	statusSupplier.remove();
 	$('#ModalDel').modal('hide');
 	tampilData();
 
