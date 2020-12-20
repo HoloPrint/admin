@@ -36,20 +36,12 @@ function tampilData() {
 		var cell3 = row.insertCell(2);
 		var cell4 = row.insertCell(3);
 		var cell5 = row.insertCell(4);
-		var cell6 = row.insertCell(5);
-		var cell7 = row.insertCell(6);
-		var cell8 = row.insertCell(7);
-		var cell9 = row.insertCell(8);
 
 		cell1.innerHTML = newstatusSupplier.id;
-		cell2.innerHTML = newstatusSupplier.nama_pemesan;
+		cell2.innerHTML = newstatusSupplier.nama_supplier;
 		cell3.innerHTML = newstatusSupplier.alamat;
 		cell4.innerHTML = newstatusSupplier.kontak;
-		cell5.innerHTML = newstatusSupplier.file;
-		cell6.innerHTML = newstatusSupplier.varian;
-		cell7.innerHTML = newstatusSupplier.jumlah;
-		cell8.innerHTML = newstatusSupplier.nominal;
-		cell9.innerHTML = '<button class="btn btn-primary btn-sm" type="button" id="update_data" onclick="updateData_Tampil(' + newstatusSupplier.id + ')" data-toggle="modal" data-target="#ModalUpdate">Update</button><button class="btn btn-danger btn-sm" type="button" id="delete_data" onclick="deleteData_Tampil(' + newstatusSupplier.id + ')" data-toggle="modal" data-target="#ModalDel" style="margin-left:10px;">Hapus</button>';
+		cell5.innerHTML = '<button class="btn btn-success btn-sm">Hubungi</button> <button class="btn btn-primary btn-sm" type="button" id="update_data" onclick="updateData_Tampil(' + newstatusSupplier.id + ')" data-toggle="modal" data-target="#ModalUpdate">Update</button><button class="btn btn-danger btn-sm" type="button" id="delete_data" onclick="deleteData_Tampil(' + newstatusSupplier.id + ')" data-toggle="modal" data-target="#ModalDel" style="margin-left:10px;">Hapus</button>';
 	});
 
 }
@@ -57,7 +49,7 @@ function tampilData() {
 // Melakukan proses pencarian data
 function CariData() {
 	// Ambil isi text pencarian
-	var nama_pemesan_cari = $('#text_cari').val();
+	var nama_Supplier_cari = $('#text_cari').val();
 
 	// Buat referensi database firebase
 	var dbRef = firebase.database();
@@ -81,9 +73,9 @@ function CariData() {
 
 	// Ambil data nama_Supplier huruf depan (dan selebihnya) isi text cari
 	var query = statusSupplier
-		.orderByChild('nama_pemesan')
-		.startAt(nama_pemesan_cari)
-		.endAt(nama_pemesan_cari + "\uf8ff");
+		.orderByChild('nama_supplier')
+		.startAt(nama_Supplier_cari)
+		.endAt(nama_Supplier_cari + "\uf8ff");
 
 
 	// Dapatkan referensi table
@@ -106,20 +98,12 @@ function CariData() {
 		var cell3 = row.insertCell(2);
 		var cell4 = row.insertCell(3);
 		var cell5 = row.insertCell(4);
-		var cell6 = row.insertCell(5);
-		var cell7 = row.insertCell(6);
-		var cell8 = row.insertCell(7);
-		var cell9 = row.insertCell(8);
 
-		cell1.innerHTML = newstatusSupplier.id;
-		cell2.innerHTML = newstatusSupplier.nama_pemesan;
-		cell3.innerHTML = newstatusSupplier.alamat;
-		cell4.innerHTML = newstatusSupplier.kontak;
-		cell5.innerHTML = newstatusSupplier.file;
-		cell6.innerHTML = newstatusSupplier.varian;
-		cell7.innerHTML = newstatusSupplier.jumlah;
-		cell8.innerHTML = newstatusSupplier.nominal;
-		cell9.innerHTML = '<button class="btn btn-primary btn-sm" type="button" id="update_data" onclick="updateData_Tampil(' + newstatusSupplier.id + ')" data-toggle="modal" data-target="#ModalUpdate">Update</button><button class="btn btn-danger btn-sm" type="button" id="delete_data" onclick="deleteData_Tampil(' + newstatusSupplier.id + ')" data-toggle="modal" data-target="#ModalDel" style="margin-left:10px;">Hapus</button>';
+		cell1.innerHTML = childData.id;
+		cell2.innerHTML = childData.nama_Supplier;
+		cell3.innerHTML = childData.alamat;
+		cell4.innerHTML = childData.kontak;
+		cell5.innerHTML = '<button class="btn btn-primary btn-sm" type="button" id="update_data" onclick="updateData_Tampil(' + childData.id + ')" data-toggle="modal" data-target="#ModalUpdate">Update</button><button class="btn btn-danger btn-sm" type="button" id="delete_data" onclick="deleteData_Tampil(' + childData.id + ')" style="margin-left:10px;"data-toggle="modal" data-target="#ModalDel">Hapus</button>';
 	});
 
 }
@@ -130,18 +114,12 @@ function updateData_Tampil(id) {
 
 	var dbRef_update_tampil = firebase.database();
 	var statusSupplierdenganID = dbRef_update_tampil.ref("status-Supplier/" + id);
-	var base = 15000;
-	var flatongkir = 25000;
 
 	statusSupplierdenganID.on("value", function (snapshot) {
 		var childData = snapshot.val();
-		$('#t4_nama_pemesan').val(childData.nama_pemesan);
+		$('#t4_nama_Supplier').val(childData.nama_Supplier);
 		$('#t4_alamat').val(childData.alamat);
 		$('#t4_kontak').val(childData.kontak);
-		$('#t4_file').val(childData.file);
-		$('#t4_varian').val(childData.varian);
-		$('#t4_jumlah').val(childData.jumlah);
-		$('#t4_nominal').val((base * childData.jumlah) + flatongkir);
 	});
 
 }
@@ -149,25 +127,19 @@ function updateData_Tampil(id) {
 // Melakukan proses update data
 function updateData_Proses() {
 	var id_update_proses = $('#T4').val();
-	var nama_pemesan_update_proses = $('#t4_nama_pemesan').val();
+	var nama_Supplier_update_proses = $('#t4_nama_Supplier').val();
 	var alamat_update_proses = $('#t4_alamat').val();
-	var kontak_update_proses = $('#t4_kontak').val();
-	var file_update_proses = $('#t4_file').val();
-	var varian_update_proses = $('#t4_varian').val();
-	var jumlah_update_proses = $('#t4_jumlah').val();
-	var nominal_update_proses = $('#t4_nominal').val();
+	var stock_update_proses = $('#t4_stock').val();
+	var kode_supplier_update_proses = $('#t4_kode_supplier').val();
 
 	var dbRef_update_proses = firebase.database();
 	var update_statusSupplier = dbRef_update_proses.ref("status-Supplier/" + id_update_proses);
 
 	update_statusSupplier.update({
-		"nama_pemesan": nama_pemesan_update_proses,
+		"nama_Supplier": nama_Supplier_update_proses,
 		"alamat": alamat_update_proses,
-		"kontak": kontak_update_proses,
-		"file": file_update_proses,
-		"varian": varian_update_proses,
-		"jumlah": parseInt(jumlah_update_proses),
-		"nominal": parseInt(nominal_update_proses)
+		"stock": parseInt(stock_update_proses),
+		"kode_supplier": kode_supplier_update_proses
 	});
 
 	$('#ModalUpdate').modal('hide');
@@ -177,13 +149,10 @@ function updateData_Proses() {
 // Mengambil id terakhir dan membahkan dengan 1 dan memasukkan kedalam text id di modal tambah
 function ambilDataTerakhir() {
 
-	$('#t4_nama_pemesan_add').val("");
+	$('#t4_nama_Supplier_add').val("");
 	$('#t4_alamat_add').val("");
-	$('#t4_kontak_add').val("");
-	$('#t4_file_add').val("");
-	$('#t4_varian_add').val("");
-	$('#t4_jumlah_add').val("");
-	$('#t4_nominal_add').val("");
+	$('#t4_stock_add').val("");
+	$('#t4_kode_supplier_add').val("");
 
 	var dbRef_ambilDataTerakhir = firebase.database();
 	var cariAkhir = dbRef_ambilDataTerakhir.ref("status-Supplier");
@@ -195,20 +164,13 @@ function ambilDataTerakhir() {
 
 }
 
-// Melakukan proses penambahan Supplier data
+// Melakukan proses penamSupplier data
 function addData_Proses() {
-
-	var base = 15000;
-	var flatongkir = 25000;
-
 	var id_add_proses = $('#T4_add').val();
-	var nama_pemesan_add_proses = $('#t4_nama_pemesan_add').val();
+	var nama_Supplier_add_proses = $('#t4_nama_Supplier_add').val();
 	var alamat_add_proses = $('#t4_alamat_add').val();
-	var kontak_add_proses = $('#t4_kontak_add').val();
-	var file_add_proses = $('#t4_file_add').val();
-	var varian_add_proses = $('#t4_varian_add').val();
-	var jumlah_add_proses = $('#t4_jumlah_add').val();
-	var nominal_add_proses = ((base * jumlah_add_proses) + flatongkir);
+	var stock_add_proses = $('#t4_stock_add').val();
+	var kode_supplier_add_proses = $('#t4_kode_supplier_add').val();
 
 	var dbRef_add_proses = firebase.database();
 
@@ -217,21 +179,28 @@ function addData_Proses() {
 
 	statusSupplier.set({
 
-		"id": parseInt(id_add_proses),
-		"nama_pemesan": nama_pemesan_add_proses,
-		"alamat": alamat_add_proses,
-		"kontak": kontak_add_proses,
-		"file": file_add_proses,
-		"varian": varian_add_proses,
-		"jumlah": parseInt(jumlah_add_proses),
-		"nominal": parseInt(nominal_add_proses)
+		id: parseInt(id_add_proses),
+		nama_Supplier: nama_Supplier_add_proses,
+		alamat: alamat_add_proses,
+		stock: parseInt(stock_add_proses)
 
 	});
 
-	$('#ModalBayar').modal('show');
 	$('#ModalAdd').modal('hide');
-	$('#t4_byr').val(nominal_add_proses);
 	tampilData();
+}
+
+// Popup Bayar
+
+function bayar() {
+	var txt;
+	var nom = 10000;
+	if (confirm("Nominal Pemabayran anda " + nom)) {
+		txt = "You pressed OK!";
+	} else {
+		txt = "You pressed Cancel!";
+	}
+	document.getElementById("demo").innerHTML = txt;
 }
 
 // Melakukan proses delete data yang telah dikonfirmasi sebelumnya
