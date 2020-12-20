@@ -41,7 +41,7 @@ function tampilData() {
 		cell2.innerHTML = newstatusSupplier.nama_Supplier;
 		cell3.innerHTML = newstatusSupplier.alamat;
 		cell4.innerHTML = newstatusSupplier.kontak;
-		cell5.innerHTML = '<button class="btn btn-success btn-sm">Hubungi</button> <button class="btn btn-primary btn-sm" type="button" id="update_data" onclick="updateData_Tampil(' + newstatusSupplier.id + ')" data-toggle="modal" data-target="#ModalUpdate">Update</button><button class="btn btn-danger btn-sm" type="button" id="delete_data" onclick="deleteData_Tampil(' + newstatusSupplier.id + ')" data-toggle="modal" data-target="#ModalDel" style="margin-left:10px;">Hapus</button>';
+		cell5.innerHTML = '<button class="btn btn-success btn-sm" href="https://www.google.com" target="_blank">Hubungi</button> <button class="btn btn-primary btn-sm" type="button" id="update_data" onclick="updateData_Tampil(' + newstatusSupplier.id + ')" data-toggle="modal" data-target="#ModalUpdate">Update</button><button class="btn btn-danger btn-sm" type="button" id="delete_data" onclick="deleteData_Tampil(' + newstatusSupplier.id + ')" data-toggle="modal" data-target="#ModalDel" style="margin-left:10px;">Hapus</button>';
 	});
 
 }
